@@ -1,0 +1,12 @@
+---
+layout: post
+title: 'An Integrated Adaptive System for On-Pipe Landing and Adherence of Autonomous Inspection Drones'
+date: 2025-02-12 22:21:59 +00:00
+image: /images/onpipe.png
+categories: research
+author: 'Prajyot Jadhav'
+authors: 'V. Jaiton,<strong> P. D. Jadhav </strong>, K. Rothomphiwat, T. Phetpoon, K. Tarapongniwat, P. Manoonpong'
+venue: 'Accepted at <strong>IEEE/SICE International Symposium on System Integration (SII)</strong>, 2025'
+paper: https://ieeexplore.ieee.org/document/11283048
+youtube: https://www.youtube.com/watch?v=vUNNQ-mv0z8
+---

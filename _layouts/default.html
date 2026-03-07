@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E00L9PT3V9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-E00L9PT3V9');
+  </script>
+  <title>{{ site.name }}</title>
+
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+  <meta name="author" content="{{ site.name }}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+    <tr style="padding:0px">
+      <td style="padding:0px">
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <tr style="padding:0px">
+            <td style="padding:2.5%;width:60%;vertical-align:middle">
+              <h1>
+                Prajyot Jadhav
+              </h1>
+              <p>I’m a Research Engineer in Robotics at the <a href="https://sites.google.com/view/akslab/home">Autonomous and Kooperative Systems Lab</a> at the University of Tartu, Estonia, advised by <a href="https://tuit.ut.ee/en/content/arun-kumar-singh">Prof. Arun Kumar Singh</a>.
+              </p>
+              <p>
+                I’ve previously worked with <a href="https://jderobot.github.io/">JdeRobot</a> through Google Summer of Code, collaborating with <a href="https://gsyc.urjc.es/jmplaza/">Prof. José María Cañas Plaza</a> and <a href="https://www.linkedin.com/in/pedroariasperez/?locale=en_US">Prof. Pedro Arias Pérez</a> on the open-source software <a href="https://jderobot.github.io/RoboticsAcademy/">Robotics Academy</a>.
+                During my pre-final year summer, I worked on adaptive control strategies for quadrotors under the supervision of <a href="https://manoonpong.com/">Prof. Poramate Manoonpong</a>. 
+              </p>
+              <p>
+                I hold a Bachelor’s in Electronics and Communication Engineering from Visvesvaraya National Institute of Technology (VNIT), India. During my time there, I was part of <a href="https://ivlabs.in/">IvLabs</a>, the AI and Robotics lab of VNIT, where I developed many of my research interests under the guidance of <a href="https://vnit.ac.in/engineering/mech/dr-s-s-chiddarwar/">Prof. Shital Chiddarwar</a>.
+              </p>
+              <p class="social-icons" style="text-align:center;">
+                <a href="https://mailhide.io/e/B8TyS" target="_blank">
+                  <i class="fas fa-envelope fa-lg"></i>
+                </a>
+
+                <a href="https://github.com/Arcane-01" target="_blank">
+                  <i class="fab fa-github fa-lg"></i>
+                </a>
+
+                <a href="https://scholar.google.com/citations?user=fkc1d3cAAAAJ&hl=en" target="_blank">
+                  <i class="fas fa-graduation-cap fa-lg"></i>
+                </a>
+
+                <a href="https://www.linkedin.com/in/prajyot-jadhav-90921a241/" target="_blank">
+                  <i class="fab fa-linkedin fa-lg"></i>
+                </a>
+
+                <a href="/pdfs/resume.pdf" target="_blank">
+                  <i class="fas fa-file-alt fa-lg"></i>
+                </a>
+              </p>
+            </td>
+            <td style="padding:2.5%;width:40%;max-width:40%; text-align:center;">
+              <img 
+                style="width:100%; max-width:100%; height:auto; object-fit: cover; border-radius: 50%; margin-top: -40px;" 
+                alt="profile photo" 
+                src="tn/images/pfp.jpeg">
+            </td>
+          </tr>
+        </table>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <tr>
+            <td style="padding:2.5%;width:100%;vertical-align:middle">
+              <h2>Research</h2>
+            </td>
+          </tr>
+        </table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+
+          {% for post in site.posts %}
+          {% for cat in post.categories %}
+          {% if cat == 'research' %}
+          <tr>
+            <td style="padding:2.5%;width:25%;vertical-align:middle;min-width:120px">
+              <img src="/tn{{post.image}}" alt="project image" style="width:auto; height:auto; max-width:100%;" />
+            </td>
+            <td style="padding:2.5%;width:75%;vertical-align:middle">
+              <h3>{{post.title}}</h3>
+              <br>
+              {{post.authors}}
+
+              <br>
+              <em>{{post.venue}}</em>
+              <br>
+              {% if post.arxiv %}
+              <a href="{{post.arxiv}}">arxiv</a> /
+              {% endif %}
+              {% if post.paper %}
+              <a href="{{post.paper}}">paper</a> /
+              {% endif %}
+              {% if post.pdf %}
+              <a href="{{post.pdf}}">pdf</a> /
+              {% endif %}
+              {% if post.video %}
+              <a href="{{post.video}}">video</a> /
+              {% endif %}
+              {% if post.code %}
+              <a href="{{post.code}}">code</a> /
+              {% endif %}
+              {% if post.poster %}
+              <a href="{{post.poster}}">poster</a> /
+              {% endif %}
+              {% if post.slides %}
+              <a href="{{post.slides}}">slides</a> /
+              {% endif %}
+              {% if post.website %}
+              <a href="{{post.website}}">website</a> /
+              {% endif %}
+              {% if post.youtube %}
+              <a href="{{post.youtube}}">video</a> /
+              {% endif %}
+              <p></p>
+              {{ post.excerpt }}
+            </td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+          {% endfor %}
+        </table>
+        <br>
+        <!-- <br> -->
+        <!-- <br> -->
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <tr>
+            <td style="padding:2.5%;width:100%;vertical-align:middle">
+              <h2>Selected Projects</h2>
+            </td>
+          </tr>
+        </table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+
+          {% for post in site.posts %}
+          {% for cat in post.categories %}
+          {% if cat == 'project' %}
+          <tr>
+            <td style="padding:2.5%;width:25%;vertical-align:middle;min-width:120px">
+              <img src="/tn{{post.image}}" alt="project image" style="width:auto; height:auto; max-width:100%;" />
+            </td>
+            <td style="padding:2.5%;width:75%;vertical-align:middle">
+              <h3>{{post.title}}</h3>
+
+              <br>
+              {% if post.website %}
+              <a href="{{post.website}}">website</a> /
+              {% endif %}
+              {% if post.paper %}
+              <a href="{{post.paper}}">paper</a> /
+              {% endif %}
+              {% if post.patent %}
+              <a href="{{post.patent}}">patent</a> /
+              {% endif %}
+              {% if post.patent2 %}
+              <a href="{{post.patent2}}">patent #2</a> /
+              {% endif %}
+              {% if post.patent3 %}
+              <a href="{{post.patent3}}">patent #3</a> /
+              {% endif %}
+              {% if post.video %}
+              <a href="{{post.video}}">video</a> /
+              {% endif %}
+              {% if post.video2 %}
+              <a href="{{post.video2}}">video #2</a> /
+              {% endif %}
+              {% if post.code %}
+              <a href="{{post.code}}">code</a> /
+              {% endif %}
+              {% if post.poster %}
+              <a href="{{post.poster}}">poster</a> /
+              {% endif %}
+              {% if post.slides %}
+              <a href="{{post.slides}}">slides</a> /
+              {% endif %}
+              <p></p>
+              {{ post.excerpt }}
+            </td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+          {% endfor %}
+        </table>
+        <br>
+        <br>
+        <br>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <tr>
+            <td style="padding:0px; text-align:center;">
+              <br>
+              <!-- Visitor Count -->
+            <div class="visitor-count" style="width:450px; height:250px; margin:0 auto;">
+              <!-- <script type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=WAhnuCFiVsjzhtrIsxvlnIZYLeVVP3T6PZVpm9jN3IQ"></script> -->
+              <script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=N2cX9uQHgkg-oAkZ_uhU7oLSU7B7Hw01O_sBYrSBVaE&cl=ffffff&w=a"></script>
+            </div>
+            </td>
+          </tr>
+        </table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <tr>
+            <td style="padding:0px">
+              <br>
+              <br>
+              <p style="text-align:center; font-size:small;">
+                Website template from <a style="font-size:small;" href="https://jonbarron.info">Jon Barron</a> | Last updated: {{ site.time | date: "%d-%m-%Y" }}
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
+

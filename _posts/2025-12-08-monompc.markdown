@@ -1,0 +1,13 @@
+---
+layout: post
+title: 'MonoMPC: Monocular Vision Based Navigation with Learned Collision Model and Risk-Aware Model Predictive Control'
+date: 2025-12-08 22:21:59 +00:00
+image: /images/monompc.jpg
+categories: research
+author: 'Prajyot Jadhav'
+authors: 'Basant Sharma, <strong>Prajyot Jadhav</strong>, Pranjal Paul, K. Madhava Krishna, Arun Kumar Singh'
+venue: 'Accepted at <strong>IEEE Robotics and Automation Letters (RA-L)</strong> and to be presented at <strong>International Conference on Robotics and Automation (ICRA)</strong>, 2026'
+paper: https://ieeexplore.ieee.org/document/11283048
+code: https://github.com/Basant1861/MonoMPC
+website: https://sites.google.com/view/monompc
+---
