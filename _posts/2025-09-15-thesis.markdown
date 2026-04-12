@@ -5,7 +5,7 @@ date: 2024-09-15 22:21:59 +00:00
 image: /images/btech_thesis.png
 categories: research
 author: 'Prajyot Jadhav'
-authors: '<strong> Prajyot Jadhav </strong>, Poojan Gandhi, Anamika Singh'
+authors: '<strong> Prajyot Jadhav</strong>, Poojan Gandhi, Anamika Singh'
 venue: 'B.Tech. thesis'
 pdf: pdfs/btech_thesis.pdf
 ---
