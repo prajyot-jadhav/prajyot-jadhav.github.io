@@ -1,0 +1,11 @@
+---
+layout: post
+title: 'Flow-Opt: Scalable Centralized Multi-Robot Trajectory Optimization with Flow Matching and Differentiable Optimization'
+date: 2026-04-02 22:21:59 +00:00
+image: /images/flow_opt.gif
+categories: research
+author: 'Prajyot Jadhav'
+authors: 'Simon Idoko, <strong>Prajyot Jadhav</strong>, Arun Kumar Singh'
+venue: 'Conditionally accepted in <strong>IEEE Transactions on Automation Science and Engineering (T-ASE)</strong>'
+paper: https://arxiv.org/abs/2510.09204
+---
