@@ -10,4 +10,5 @@ venue: 'Accepted in <strong>IEEE Robotics and Automation Letters (RA-L)</strong>
 paper: https://ieeexplore.ieee.org/document/11283048
 code: https://github.com/Basant1861/MonoMPC
 website: https://sites.google.com/view/monompc
+youtube: https://youtu.be/gqFXJUYMMpk
 ---
