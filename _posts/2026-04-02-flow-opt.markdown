@@ -6,6 +6,6 @@ image: /images/flow_opt.gif
 categories: research
 author: 'Prajyot Jadhav'
 authors: 'Simon Idoko, <strong>Prajyot Jadhav</strong>, Arun Kumar Singh'
-venue: 'Conditionally accepted in <strong>IEEE Transactions on Automation Science and Engineering (T-ASE)</strong>'
-paper: https://arxiv.org/abs/2510.09204
+venue: 'Accepted in <strong>IEEE Transactions on Automation Science and Engineering (T-ASE)</strong> and to be presented at <strong>International Conference on Robotics and Automation (ICRA)</strong> 2027<br>Presented at the <strong>Frontiers of Optimization for Robotics</strong> workshop at ICRA 2026'
+paper: https://ieeexplore.ieee.org/document/11536043
 ---

@@ -110,3 +110,332 @@ span.highlight {
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 //@import "highlights";
 //@import "svg-icons";
+
+/*****************/
+/* THEME SWITCH  */
+/*****************/
+.theme-controls {
+  position: fixed;
+  top: 12px;
+  right: 16px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.theme-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.theme-switch-label {
+  font-size: 12px;
+  color: #555;
+}
+
+.theme-switch input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.theme-switch-track {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  background: #ccc;
+  border-radius: 22px;
+  transition: background .2s;
+}
+
+.theme-switch-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform .2s;
+}
+
+.theme-switch input:checked + .theme-switch-track .theme-switch-knob {
+  transform: translateX(18px);
+}
+
+.theme-switch input:focus-visible + .theme-switch-track {
+  outline: 2px solid #1976D2;
+  outline-offset: 2px;
+}
+
+/*****************/
+/* RETRO THEME   */
+/*****************/
+// Game Boy (original LCD) palette
+$rt-darkest: #081820;
+$rt-dark: #346856;
+$rt-light: #88c070;
+$rt-lightest: #e0f8d0;
+$rt-brick: #cdeabb;
+
+// Hidden unless retro is on
+#retro-app, .rt-spark, .sound-toggle, .start-screen { display: none; }
+
+html[data-theme="retro"] {
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: $rt-darkest;
+    background-color: $rt-lightest;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='32' shape-rendering='crispEdges'%3E%3Cg fill='%23cdeabb'%3E%3Crect width='64' height='2'/%3E%3Crect y='16' width='64' height='2'/%3E%3Crect width='2' height='16'/%3E%3Crect x='32' width='2' height='16'/%3E%3Crect x='16' y='16' width='2' height='16'/%3E%3Crect x='48' y='16' width='2' height='16'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 64px 32px;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' shape-rendering='crispEdges'%3E%3Cpath fill='%23081820' d='M0 0h2v12H0zM2 2h2v2H2zM4 4h2v2H4zM6 6h2v2H6zM2 10h2v2H2zM4 8h2v2H4zM8 8h4v2H8z'/%3E%3Cpath fill='%23e0f8d0' d='M2 4h2v6H2zM4 6h2v2H4z'/%3E%3C/svg%3E") 0 0, auto;
+  }
+  // pixel pointing-hand for anything clickable
+  a, button, label, .rt-tab, #rt-portrait { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' shape-rendering='crispEdges'%3E%3Crect x='4' y='0' width='2' height='1' fill='%23081820'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='1' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='1' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='2' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='2' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='3' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='3' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='4' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='4' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='4' width='3' height='1' fill='%23081820'/%3E%3Crect x='3' y='5' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='5' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='5' width='1' height='1' fill='%23081820'/%3E%3Crect x='7' y='5' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='9' y='5' width='3' height='1' fill='%23081820'/%3E%3Crect x='1' y='6' width='3' height='1' fill='%23081820'/%3E%3Crect x='4' y='6' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='6' width='1' height='1' fill='%23081820'/%3E%3Crect x='7' y='6' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='9' y='6' width='1' height='1' fill='%23081820'/%3E%3Crect x='10' y='6' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='12' y='6' width='1' height='1' fill='%23081820'/%3E%3Crect x='0' y='7' width='1' height='1' fill='%23081820'/%3E%3Crect x='1' y='7' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='3' y='7' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='7' width='9' height='1' fill='%23e0f8d0'/%3E%3Crect x='13' y='7' width='1' height='1' fill='%23081820'/%3E%3Crect x='0' y='8' width='1' height='1' fill='%23081820'/%3E%3Crect x='1' y='8' width='12' height='1' fill='%23e0f8d0'/%3E%3Crect x='13' y='8' width='1' height='1' fill='%23081820'/%3E%3Crect x='1' y='9' width='1' height='1' fill='%23081820'/%3E%3Crect x='2' y='9' width='11' height='1' fill='%23e0f8d0'/%3E%3Crect x='13' y='9' width='1' height='1' fill='%23081820'/%3E%3Crect x='2' y='10' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='10' width='10' height='1' fill='%23e0f8d0'/%3E%3Crect x='13' y='10' width='1' height='1' fill='%23081820'/%3E%3Crect x='2' y='11' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='11' width='9' height='1' fill='%23e0f8d0'/%3E%3Crect x='12' y='11' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='12' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='12' width='8' height='1' fill='%23e0f8d0'/%3E%3Crect x='12' y='12' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='13' width='1' height='1' fill='%23081820'/%3E%3Crect x='5' y='13' width='6' height='1' fill='%23e0f8d0'/%3E%3Crect x='11' y='13' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='14' width='1' height='1' fill='%23081820'/%3E%3Crect x='5' y='14' width='6' height='1' fill='%23e0f8d0'/%3E%3Crect x='11' y='14' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='15' width='8' height='1' fill='%23081820'/%3E%3C/svg%3E") 5 0, pointer; }
+  img { image-rendering: pixelated; }
+
+  // The classic page is replaced by the console UI
+  body > table { display: none; }
+
+  /* ---------- controls (top right) ---------- */
+  .theme-switch-label { font-family: 'Press Start 2P', monospace; font-size: 10px; color: $rt-darkest; }
+  .theme-switch-track {
+    border-radius: 0; background: $rt-dark; border: 3px solid $rt-darkest;
+    box-sizing: content-box; width: 44px; height: 20px;
+  }
+  .theme-switch-knob { border-radius: 0; background: $rt-lightest; top: 0; left: 0; height: 20px; width: 20px; }
+  .theme-switch input:checked + .theme-switch-track .theme-switch-knob { transform: translateX(24px); }
+
+  // Sound is a switch just like Retro
+  .sound-toggle {
+    display: flex; align-items: center; gap: 8px; padding: 0;
+    background: none; border: 0; font: inherit;
+  }
+  .sound-toggle .sound-icon { color: $rt-darkest; }
+  .sound-toggle .waves { display: none; }
+  .sound-toggle[aria-pressed="true"] .waves { display: inline; }
+  .sound-toggle[aria-pressed="true"] .mute { display: none; }
+  .sound-toggle.locked { animation: rt-blink 1s steps(2, start) infinite; }
+  .sound-toggle[aria-pressed="true"] .theme-switch-knob { transform: translateX(24px); }
+  .sound-toggle:focus-visible .theme-switch-track { outline: 2px solid $rt-darkest; outline-offset: 2px; }
+
+  /* ---------- console layout ---------- */
+  #retro-app {
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex; flex-direction: column;
+    padding: 64px 24px 12px;
+    font-family: 'VT323', monospace;
+    color: $rt-darkest;
+  }
+  #retro-app h2, #retro-app h3 {
+    display: block;
+    font-family: 'Press Start 2P', monospace;
+    line-height: 1.5;
+    color: inherit;
+  }
+
+  // Beat the base Lato rules without out-ranking the component classes below
+  :where(#retro-app) :where(p, a, strong) { font-family: 'VT323', monospace; font-size: 24px; }
+
+  .rt-stage {
+    display: grid;
+    grid-template-columns: 124px 320px minmax(320px, 460px);
+    align-items: stretch;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+    min-height: 600px;
+    height: calc(100vh - 110px);
+    max-height: 680px;
+  }
+
+  /* chunky bevelled button base */
+  .rt-sq, .rt-tab, .rt-btn, .rt-link {
+    font-family: 'Press Start 2P', monospace;
+    color: $rt-darkest;
+    background: $rt-light;
+    border: 4px solid $rt-darkest;
+    box-shadow: inset -4px -4px 0 $rt-dark, inset 4px 4px 0 $rt-lightest, 0 4px 0 $rt-dark;
+    text-decoration: none;
+  }
+  .rt-sq:active, .rt-tab:active, .rt-btn:active, .rt-link:active { transform: translateY(3px); box-shadow: inset -4px -4px 0 $rt-dark, inset 4px 4px 0 $rt-lightest; }
+  .rt-sq:hover, .rt-tab:hover, .rt-btn:hover, .rt-link:hover { background: $rt-lightest; color: $rt-darkest; }
+  .rt-sq:hover::before, .rt-link:hover::before { content: none; }
+
+  .rt-sq { width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; padding: 0; }
+  .rt-ico { display: block; }
+
+  /* tabs */
+  .rt-tabs { display: flex; flex-direction: column; justify-content: center; gap: 14px; margin-right: -4px; position: relative; z-index: 1; }
+  .rt-tab {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    padding: 12px 6px 10px; font-size: 9px; text-transform: uppercase;
+    &.active { background: $rt-lightest; transform: translateX(-10px); }
+  }
+
+  /* middle column: bubble + profile card */
+  .rt-mid { display: flex; flex-direction: column; justify-content: center; gap: 14px; position: relative; z-index: 2; }
+  .rt-bubble {
+    position: relative;
+    min-height: 92px;
+    padding: 14px 18px;
+    box-sizing: border-box;
+    color: $rt-lightest;
+    background: $rt-darkest;
+    border: 4px solid $rt-light;
+    box-shadow: 0 0 0 4px $rt-darkest;
+    .rt-sprite {
+      position: absolute; bottom: calc(100% + 2px); left: 44px;
+      animation: rt-bob 1s steps(1) infinite;
+      .ant { animation: rt-blink .6s steps(1) infinite; }
+      .eye { animation: rt-eye 3.2s steps(1) infinite; }
+    }
+    p { margin: 0; font-family: 'VT323', monospace; font-size: 26px; line-height: 1.1; text-align: center; color: $rt-lightest; }
+  }
+  .rt-card {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+    padding: 20px;
+    color: $rt-lightest;
+    background: $rt-darkest;
+    border: 4px solid $rt-light;
+    box-shadow: 0 0 0 4px $rt-darkest, 8px 8px 0 4px $rt-dark;
+    img { width: 190px; height: 190px; border: 4px solid $rt-light; background: $rt-lightest; box-sizing: border-box; }
+    img.real { image-rendering: auto; }
+    img.glitch { animation: rt-glitch .7s steps(1) 1; }
+    h2 { margin: 0; font-size: 18px; text-align: center; color: $rt-lightest; }
+    p { margin: 0; font-size: 24px; line-height: 1; text-align: center; color: $rt-lightest; }
+  }
+  .rt-credit {
+    margin: auto 0 0; padding-top: 24px; text-align: center; font-size: 20px; color: $rt-dark;
+    a { font-size: 20px; color: $rt-darkest; text-decoration: underline; text-decoration-style: dotted; }
+    a:hover { background: $rt-darkest; color: $rt-lightest; }
+  }
+
+  /* content panel */
+  .rt-panel {
+    position: relative; z-index: 2;
+    box-sizing: border-box;
+    display: flex; flex-direction: column;
+    min-height: 0;
+    padding: 26px 28px 24px;
+    background: $rt-lightest;
+    border: 6px solid $rt-darkest;
+    box-shadow: inset 0 0 0 4px $rt-light, 8px 8px 0 0 $rt-dark;
+    section { display: none; flex: 1; min-height: 0; flex-direction: column; }
+    section.active { display: flex; }
+    h2 { margin: 0 0 18px; text-align: center; font-size: 22px; }
+  }
+  .rt-body {
+    flex: 1; min-height: 0; overflow-y: auto;
+    padding-right: 8px;
+    font-size: 24px; line-height: 1.1;
+    scrollbar-width: thin; scrollbar-color: $rt-dark $rt-lightest;
+    p { font-size: 24px; line-height: 1.15; margin: 0 0 14px; color: $rt-darkest; }
+    a { font-family: 'VT323', monospace; font-size: 24px; color: $rt-dark; text-decoration: underline; text-decoration-style: dotted; }
+    a:hover { background: $rt-darkest; color: $rt-lightest; }
+    a:hover::before { content: none; }
+  }
+  #rt-bio-body {
+    p.rt-extra { display: none; }
+    &.open p.rt-extra { display: block; }
+  }
+  .rt-actions { display: flex; justify-content: center; padding-top: 14px; }
+  .rt-btn { padding: 16px 22px; font-size: 11px; }
+
+  .rt-item {
+    .rt-meta, .rt-meta strong { font-size: 20px; }
+    padding: 0 0 16px; margin: 0 0 16px;
+    border-bottom: 4px dotted $rt-light;
+    &:last-child { border-bottom: 0; }
+    h3 { margin: 0 0 8px; font-size: 11px; line-height: 1.6; }
+    .rt-meta { margin: 0 0 8px; font-style: italic; color: $rt-dark; }
+    .rt-meta strong { font-family: 'VT323', monospace; color: $rt-darkest; }
+  }
+  .rt-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .rt-body a.rt-link, .rt-link {
+    padding: 8px 10px; font-family: 'Press Start 2P', monospace; font-size: 9px;
+    text-transform: uppercase; text-decoration: none; color: $rt-darkest;
+  }
+  .rt-body a.rt-link:hover { background: $rt-lightest; color: $rt-darkest; }
+  .rt-contact { display: flex; flex-direction: column; justify-content: center; gap: 16px; align-items: stretch; }
+  .rt-big, .rt-body a.rt-big { padding: 16px; font-size: 12px; text-align: center; }
+
+  /* effects */
+  .rt-spark {
+    display: block; position: fixed; width: 8px; height: 8px; z-index: 600;
+    pointer-events: none; animation: rt-spark .7s steps(7) forwards;
+  }
+  .start-screen {
+    position: fixed; inset: 0; z-index: 800;
+    background: $rt-lightest; color: $rt-darkest;
+    text-align: center;
+    flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+    .load-logo {
+      font-family: 'Silkscreen', 'Press Start 2P', monospace;
+      font-weight: 700;
+      font-size: clamp(44px, 11vw, 104px);
+      line-height: 1;
+      letter-spacing: 2px;
+      text-shadow: 6px 6px 0 $rt-light;
+      span { display: block; margin-top: 8px; font-size: 1.25em; }
+    }
+    .load-text, .load-pct { font-family: 'Press Start 2P', monospace; font-size: clamp(11px, 2.2vw, 16px); line-height: 1.8; }
+    .load-bar {
+      width: min(420px, 78vw); height: 24px; box-sizing: border-box;
+      border: 4px solid $rt-darkest; background: $rt-lightest; padding: 2px;
+    }
+    .load-fill {
+      height: 100%; width: 0;
+      background: repeating-linear-gradient(90deg, $rt-darkest 0 12px, transparent 12px 16px);
+    }
+    .load-tip { font-family: 'VT323', monospace; font-size: clamp(20px, 3vw, 26px); color: $rt-dark; min-height: 1.2em; }
+  }
+  .start-screen.show { display: flex; }
+}
+
+@keyframes rt-blink { to { visibility: hidden; } }
+@keyframes rt-eye { 92% { visibility: hidden; } 96% { visibility: visible; } }
+@keyframes rt-glitch {
+  0%   { transform: translate(0); clip-path: inset(0); }
+  10%  { transform: translate(-6px, 2px); clip-path: inset(10% 0 55% 0); }
+  20%  { transform: translate(6px, -2px); clip-path: inset(60% 0 10% 0); filter: invert(1); }
+  30%  { transform: translate(-4px, 0); clip-path: inset(30% 0 40% 0); filter: none; }
+  40%  { transform: translate(4px, 3px); clip-path: inset(0); }
+  50%  { transform: translate(0, -3px); clip-path: inset(75% 0 5% 0); filter: invert(1); }
+  60%  { transform: translate(-8px, 0); clip-path: inset(5% 0 80% 0); filter: none; }
+  70%  { transform: translate(3px, 0); clip-path: inset(0); }
+  85%  { transform: translate(-3px, 1px); clip-path: inset(40% 0 30% 0); filter: invert(1); }
+  100% { transform: translate(0); clip-path: inset(0); filter: none; }
+}
+@keyframes rt-bob { 50% { transform: translateY(-3px); } }
+@keyframes rt-spark { to { transform: translate(var(--dx), var(--dy)); opacity: 0; } }
+
+/* tablet / phone: stack the console */
+@media (max-width: 960px) {
+  html[data-theme="retro"] {
+    .rt-stage {
+      grid-template-columns: 1fr; height: auto; max-height: none; min-height: 0;
+      max-width: 520px; gap: 28px;
+    }
+    .rt-tabs { flex-direction: row; margin-right: 0; gap: 8px; }
+    .rt-tab { flex: 1; padding: 10px 2px 8px; font-size: 7px; &.active { transform: none; } }
+    .rt-ico { width: 24px; height: auto; }
+    .rt-card img { width: 140px; height: 140px; }
+    .rt-panel { min-height: 420px; }
+    .rt-body { max-height: 60vh; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-switch-track, .theme-switch-knob { transition: none; }
+  html[data-theme="retro"] .rt-sprite, html[data-theme="retro"] .rt-sprite .ant, html[data-theme="retro"] .rt-sprite .eye { animation: none; }
+}

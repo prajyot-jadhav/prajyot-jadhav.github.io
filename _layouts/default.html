@@ -22,29 +22,345 @@
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@700&family=VT323&display=swap" rel="stylesheet">
+  <script>
+    // Apply saved theme before first paint (default = classic)
+    try { if (localStorage.getItem('theme') === 'retro') document.documentElement.setAttribute('data-theme', 'retro'); } catch (e) {}
+  </script>
 
 </head>
 
 <body>
+  <div class="theme-controls">
+    <button type="button" class="sound-toggle" id="sound-toggle" aria-pressed="false" aria-label="Sound" title="Toggle 8-bit sound">
+      <svg class="sound-icon" viewBox="0 0 12 10" width="30" height="25" shape-rendering="crispEdges" aria-hidden="true">
+        <path fill="currentColor" d="M1 3h2l3-2v8L3 7H1z"/>
+        <g class="waves" fill="currentColor"><rect x="7" y="4" width="1" height="2"/><rect x="8" y="3" width="1" height="4"/><rect x="9" y="2" width="1" height="6"/></g>
+        <g class="mute" fill="currentColor"><rect x="7" y="3" width="1" height="1"/><rect x="8" y="4" width="1" height="1"/><rect x="9" y="5" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/><rect x="10" y="3" width="1" height="1"/><rect x="9" y="4" width="1" height="1"/><rect x="8" y="5" width="1" height="1"/><rect x="7" y="6" width="1" height="1"/></g>
+      </svg>
+      <span class="theme-switch-track"><span class="theme-switch-knob"></span></span>
+    </button>
+    <label class="theme-switch" title="Toggle retro mode">
+      <span class="theme-switch-label">Retro</span>
+      <input type="checkbox" id="theme-toggle" aria-label="Toggle retro theme">
+      <span class="theme-switch-track"><span class="theme-switch-knob"></span></span>
+    </label>
+  </div>
+
+  <div class="start-screen" id="start-screen" aria-hidden="true">
+    <div class="load-logo">PRAJYOT<br><span>JADHAV</span></div>
+    <div class="load-text">LOADING ASSETS...</div>
+    <div class="load-bar" aria-hidden="true"><div class="load-fill" id="load-fill"></div></div>
+    <div class="load-pct" id="load-pct">0%</div>
+    <div class="load-tip" id="load-tip">Blowing dust off the cartridge...</div>
+  </div>
+
+  <!-- Retro mode: game-style console UI -->
+  <div id="retro-app">
+    <div class="rt-stage">
+      <div class="rt-tabs" role="tablist" aria-label="Sections">
+        <button type="button" class="rt-tab" role="tab"><svg class="rt-ico " viewBox="0 0 8 8" width="32" height="32" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M2 0h4v1h-4zM1 1h6v1h-6zM1 2h6v1h-6zM2 3h4v1h-4zM1 5h6v1h-6zM0 6h8v1h-8zM0 7h8v1h-8z"/></svg><span>Bio</span></button>
+        <button type="button" class="rt-tab" role="tab"><svg class="rt-ico " viewBox="0 0 8 8" width="32" height="32" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M2 0h4v1h-4zM3 1h2v1h-2zM3 2h2v1h-2zM2 3h4v1h-4zM1 4h2v1h-2zM5 4h2v1h-2zM0 5h2v1h-2zM6 5h2v1h-2zM0 6h8v1h-8zM1 7h6v1h-6z"/></svg><span>Research</span></button>
+        <button type="button" class="rt-tab" role="tab"><svg class="rt-ico " viewBox="0 0 8 8" width="32" height="32" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M1 0h1v1h-1zM3 0h2v1h-2zM6 0h1v1h-1zM0 1h8v1h-8zM1 2h2v1h-2zM5 2h2v1h-2zM0 3h3v1h-3zM5 3h3v1h-3zM0 4h3v1h-3zM5 4h3v1h-3zM1 5h2v1h-2zM5 5h2v1h-2zM0 6h8v1h-8zM1 7h1v1h-1zM3 7h2v1h-2zM6 7h1v1h-1z"/></svg><span>Projects</span></button>
+        <button type="button" class="rt-tab" role="tab"><svg class="rt-ico " viewBox="0 0 8 7" width="32" height="28" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M0 0h8v1h-8zM0 1h2v1h-2zM6 1h2v1h-2zM0 2h1v1h-1zM2 2h1v1h-1zM5 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM3 3h2v1h-2zM7 3h1v1h-1zM0 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM7 5h1v1h-1zM0 6h8v1h-8z"/></svg><span>Contact</span></button>
+      </div>
+      <div class="rt-mid">
+        <div class="rt-bubble"><svg class="rt-sprite" viewBox="0 0 16 17" width="48" height="51" shape-rendering="crispEdges" aria-hidden="true"><rect class="ant" x="7" y="0" width="2" height="1" fill="#88c070"/><rect x="7" y="1" width="2" height="1" fill="#081820"/><rect x="2" y="2" width="12" height="1" fill="#081820"/><rect x="1" y="3" width="1" height="1" fill="#081820"/><rect x="2" y="3" width="12" height="1" fill="#88c070"/><rect x="14" y="3" width="1" height="1" fill="#081820"/><rect x="1" y="4" width="1" height="1" fill="#081820"/><rect x="2" y="4" width="2" height="1" fill="#88c070"/><rect x="4" y="4" width="8" height="1" fill="#081820"/><rect x="12" y="4" width="1" height="1" fill="#88c070"/><rect x="13" y="4" width="1" height="1" fill="#346856"/><rect x="14" y="4" width="1" height="1" fill="#081820"/><rect x="0" y="5" width="2" height="1" fill="#081820"/><rect x="2" y="5" width="1" height="1" fill="#88c070"/><rect x="3" y="5" width="1" height="1" fill="#081820"/><rect class="eye" x="4" y="5" width="2" height="1" fill="#e0f8d0"/><rect x="6" y="5" width="4" height="1" fill="#081820"/><rect class="eye" x="10" y="5" width="2" height="1" fill="#e0f8d0"/><rect x="12" y="5" width="1" height="1" fill="#081820"/><rect x="13" y="5" width="1" height="1" fill="#346856"/><rect x="14" y="5" width="2" height="1" fill="#081820"/><rect x="0" y="6" width="2" height="1" fill="#081820"/><rect x="2" y="6" width="1" height="1" fill="#88c070"/><rect x="3" y="6" width="1" height="1" fill="#081820"/><rect class="eye" x="4" y="6" width="2" height="1" fill="#e0f8d0"/><rect x="6" y="6" width="4" height="1" fill="#081820"/><rect class="eye" x="10" y="6" width="2" height="1" fill="#e0f8d0"/><rect x="12" y="6" width="1" height="1" fill="#081820"/><rect x="13" y="6" width="1" height="1" fill="#346856"/><rect x="14" y="6" width="2" height="1" fill="#081820"/><rect x="0" y="7" width="2" height="1" fill="#081820"/><rect x="2" y="7" width="2" height="1" fill="#88c070"/><rect x="4" y="7" width="8" height="1" fill="#081820"/><rect x="12" y="7" width="1" height="1" fill="#88c070"/><rect x="13" y="7" width="1" height="1" fill="#346856"/><rect x="14" y="7" width="2" height="1" fill="#081820"/><rect x="0" y="8" width="2" height="1" fill="#081820"/><rect x="2" y="8" width="11" height="1" fill="#88c070"/><rect x="13" y="8" width="1" height="1" fill="#346856"/><rect x="14" y="8" width="2" height="1" fill="#081820"/><rect x="1" y="9" width="1" height="1" fill="#081820"/><rect x="2" y="9" width="4" height="1" fill="#88c070"/><rect x="6" y="9" width="4" height="1" fill="#081820"/><rect x="10" y="9" width="3" height="1" fill="#88c070"/><rect x="13" y="9" width="1" height="1" fill="#346856"/><rect x="14" y="9" width="1" height="1" fill="#081820"/><rect x="1" y="10" width="1" height="1" fill="#081820"/><rect x="2" y="10" width="12" height="1" fill="#346856"/><rect x="14" y="10" width="1" height="1" fill="#081820"/><rect x="2" y="11" width="12" height="1" fill="#081820"/><rect x="2" y="12" width="12" height="1" fill="#081820"/><rect x="2" y="13" width="1" height="1" fill="#081820"/><rect x="3" y="13" width="1" height="1" fill="#346856"/><rect x="4" y="13" width="1" height="1" fill="#081820"/><rect x="5" y="13" width="2" height="1" fill="#346856"/><rect x="7" y="13" width="2" height="1" fill="#88c070"/><rect x="9" y="13" width="2" height="1" fill="#346856"/><rect x="11" y="13" width="1" height="1" fill="#081820"/><rect x="12" y="13" width="1" height="1" fill="#346856"/><rect x="13" y="13" width="1" height="1" fill="#081820"/><rect x="2" y="14" width="3" height="1" fill="#081820"/><rect x="5" y="14" width="6" height="1" fill="#346856"/><rect x="11" y="14" width="3" height="1" fill="#081820"/><rect x="5" y="15" width="6" height="1" fill="#081820"/><rect x="5" y="16" width="2" height="1" fill="#081820"/><rect x="9" y="16" width="2" height="1" fill="#081820"/></svg><p id="rt-say" aria-live="polite"></p></div>
+        <div class="rt-card">
+          <img id="rt-portrait" src="tn/images/pfp_pixel.png" alt="Pixelated portrait of Prajyot Jadhav" role="button" tabindex="0" title="Click me">
+          <h2>Prajyot<br>Jadhav</h2>
+          <p>MSR Student @ CMU RI</p>
+        </div>
+      </div>
+      <div class="rt-panel">
+        <section role="tabpanel">
+          <h2>Bio</h2>
+          <div class="rt-body" id="rt-bio-body"></div>
+          <div class="rt-actions"><button type="button" class="rt-btn" id="rt-more">More info</button></div>
+        </section>
+        <section role="tabpanel">
+          <h2>Research</h2>
+          <div class="rt-body">
+            {% for post in site.posts %}{% if post.categories contains 'research' %}
+            <article class="rt-item">
+              <h3>{{ post.title }}</h3>
+              <p class="rt-meta">{{ post.venue }}</p>
+              <div class="rt-links">{% if post.arxiv %}<a class="rt-link" href="{{ post.arxiv }}" target="_blank" rel="noopener">arxiv</a>{% endif %}{% if post.paper %}<a class="rt-link" href="{{ post.paper }}" target="_blank" rel="noopener">paper</a>{% endif %}{% if post.pdf %}<a class="rt-link" href="{{ post.pdf }}" target="_blank" rel="noopener">pdf</a>{% endif %}{% if post.video %}<a class="rt-link" href="{{ post.video }}" target="_blank" rel="noopener">video</a>{% endif %}{% if post.code %}<a class="rt-link" href="{{ post.code }}" target="_blank" rel="noopener">code</a>{% endif %}{% if post.poster %}<a class="rt-link" href="{{ post.poster }}" target="_blank" rel="noopener">poster</a>{% endif %}{% if post.slides %}<a class="rt-link" href="{{ post.slides }}" target="_blank" rel="noopener">slides</a>{% endif %}{% if post.website %}<a class="rt-link" href="{{ post.website }}" target="_blank" rel="noopener">website</a>{% endif %}{% if post.youtube %}<a class="rt-link" href="{{ post.youtube }}" target="_blank" rel="noopener">video</a>{% endif %}</div>
+            </article>
+            {% endif %}{% endfor %}
+          </div>
+        </section>
+        <section role="tabpanel">
+          <h2>Projects</h2>
+          <div class="rt-body">
+            {% for post in site.posts %}{% if post.categories contains 'project' %}
+            <article class="rt-item">
+              <h3>{{ post.title }}</h3>
+              {{ post.excerpt }}
+              <div class="rt-links">{% if post.arxiv %}<a class="rt-link" href="{{ post.arxiv }}" target="_blank" rel="noopener">arxiv</a>{% endif %}{% if post.paper %}<a class="rt-link" href="{{ post.paper }}" target="_blank" rel="noopener">paper</a>{% endif %}{% if post.pdf %}<a class="rt-link" href="{{ post.pdf }}" target="_blank" rel="noopener">pdf</a>{% endif %}{% if post.video %}<a class="rt-link" href="{{ post.video }}" target="_blank" rel="noopener">video</a>{% endif %}{% if post.code %}<a class="rt-link" href="{{ post.code }}" target="_blank" rel="noopener">code</a>{% endif %}{% if post.poster %}<a class="rt-link" href="{{ post.poster }}" target="_blank" rel="noopener">poster</a>{% endif %}{% if post.slides %}<a class="rt-link" href="{{ post.slides }}" target="_blank" rel="noopener">slides</a>{% endif %}{% if post.website %}<a class="rt-link" href="{{ post.website }}" target="_blank" rel="noopener">website</a>{% endif %}{% if post.youtube %}<a class="rt-link" href="{{ post.youtube }}" target="_blank" rel="noopener">video</a>{% endif %}</div>
+            </article>
+            {% endif %}{% endfor %}
+          </div>
+        </section>
+        <section role="tabpanel">
+          <h2>Contact</h2>
+          <div class="rt-body rt-contact">
+            <a class="rt-link rt-big" href="mailto:prajyotj04@gmail.com">Email</a>
+            <a class="rt-link rt-big" href="https://github.com/Arcane-01" target="_blank" rel="noopener">GitHub</a>
+            <a class="rt-link rt-big" href="https://scholar.google.com/citations?user=fkc1d3cAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a>
+            <a class="rt-link rt-big" href="https://www.linkedin.com/in/prajyot-jadhav-90921a241/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="rt-link rt-big" href="/pdfs/resume.pdf" target="_blank" rel="noopener">Resume</a>
+          </div>
+        </section>
+      </div>
+    </div>
+    <p class="rt-credit">Heavily inspired by <a href="https://interactive.matteosantoro.dev/" target="_blank" rel="noopener">interactive.matteosantoro.dev</a></p>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.documentElement, box = document.getElementById('theme-toggle');
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function isRetro() { return root.getAttribute('data-theme') === 'retro'; }
+      box.checked = isRetro();
+
+      /* ---------- 8-bit sound effects (always start off) ---------- */
+      var actx, soundOn = false, sbtn = document.getElementById('sound-toggle');
+      function paintSound() { sbtn.setAttribute('aria-pressed', soundOn); }
+      paintSound();
+      function ctx() { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); return actx; }
+      // Browsers keep audio locked on each page load until the visitor clicks or presses a key.
+      function unlock() {
+        if (!soundOn) return;
+        try {
+          var c = ctx(), p = c.state === 'running' ? null : c.resume();
+          if (p && p.then) p.then(function () { sbtn.classList.toggle('locked', c.state !== 'running'); });
+          else sbtn.classList.remove('locked');
+        } catch (e) {}
+      }
+      ['pointerdown', 'keydown', 'touchstart'].forEach(function (ev) { document.addEventListener(ev, unlock, true); });
+      window.addEventListener('pageshow', function (e) {
+        if (e.persisted && soundOn && !(actx && actx.state === 'running')) sbtn.classList.add('locked');
+      });
+      // one square-wave note, optionally sweeping to `to` Hz
+      function note(freq, dur, when, vol, to, type) {
+        if (!soundOn || !isRetro()) return;
+        try {
+          var c = ctx();
+          if (c.state !== 'running') { c.resume(); return; }
+          var o = c.createOscillator(), g = c.createGain(), t = c.currentTime + (when || 0);
+          o.type = type || 'square';
+          o.frequency.setValueAtTime(freq, t);
+          if (to) o.frequency.exponentialRampToValueAtTime(to, t + dur);
+          g.gain.setValueAtTime(vol || 0.07, t);
+          g.gain.setValueAtTime(vol || 0.07, t + dur * 0.7);
+          g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+          o.connect(g); g.connect(c.destination); o.start(t); o.stop(t + dur);
+        } catch (e) {}
+      }
+      function arp(freqs, step, dur, vol) { freqs.forEach(function (f, i) { note(f, dur || step * 1.4, i * step, vol); }); }
+      // a burst of white noise (drums, explosions)
+      function noise(dur, when, vol, rate) {
+        if (!soundOn || !isRetro()) return;
+        try {
+          var c = ctx();
+          if (c.state !== 'running') { c.resume(); return; }
+          var n = Math.floor(c.sampleRate * dur), buf = c.createBuffer(1, n, c.sampleRate), d = buf.getChannelData(0);
+          for (var i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
+          var src = c.createBufferSource(), g = c.createGain(), t = c.currentTime + (when || 0);
+          src.buffer = buf; src.playbackRate.value = rate || 1;
+          g.gain.setValueAtTime(vol || 0.1, t); g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+          src.connect(g); g.connect(c.destination); src.start(t);
+        } catch (e) {}
+      }
+      var pent = [523, 587, 659, 784, 880, 1047, 1175, 1319];   // C major pentatonic, so random hovers still sound musical
+      function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+      // classic-console style effects, all generated from plain waves
+      var sfx = {
+        tick:    function () { note(pick(pent), .05, 0, .04); },
+        hoverBtn:function () { note(pick(pent), .04, 0, .045); note(pick(pent) * 2, .05, .045, .035); },
+        coin:    function () { note(988, .07, 0); note(1319, .4, .07); },
+        jump:    function () { note(250, .22, 0, .07, 750); },
+        squish:  function () { note(700, .18, 0, .07, 180); },
+        fireball:function () { note(1500, .14, 0, .06, 350); note(900, .08, .05, .04, 250); },
+        kick:    function () { note(150, .16, 0, .12, 45, 'triangle'); noise(.05, 0, .05); },
+        snare:   function () { noise(.12, 0, .09, 1.5); note(220, .08, 0, .05, 120, 'triangle'); },
+        powerup: function () { arp([523, 659, 784, 1047, 1319, 1568], .065); },
+        powerdn: function () { arp([1568, 1175, 880, 659, 523, 392], .06); },
+        oneup:   function () { arp([659, 784, 1319, 1047, 1175, 1568], .09); },
+        magic:   function () { arp([392, 494, 587, 784, 988, 1175], .045, .09, .05); },
+        bump:    function () { note(130, .12, 0, .09, 70); },
+        pipe:    function () { note(600, .3, 0, .07, 150); },
+        glitch:  function () { for (var i = 0; i < 6; i++) { note(90 + Math.random() * 900, .045, i * .06, .05); noise(.05, i * .06, .05, 2); } },
+        talk:    function () { note(300 + Math.random() * 180, .035, 0, .03); }
+      };
+      var tabSfx = ['coin', 'magic', 'fireball', 'oneup'];            // one per tab
+      var linkSfx = { paper: 'coin', pdf: 'coin', arxiv: 'coin', code: 'kick', website: 'snare', video: 'fireball', slides: 'magic', poster: 'magic', email: 'oneup', github: 'kick', scholar: 'coin', linkedin: 'snare', resume: 'powerup' };
+      var clickSfx = ['bump', 'kick', 'snare'];
+      sbtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        soundOn = !soundOn; paintSound(); sbtn.classList.remove('locked');
+        if (soundOn) sfx.powerup(); else { soundOn = true; sfx.powerdn(); soundOn = false; }
+      });
+      // Click sounds: each tab, link type and control gets its own effect
+      document.addEventListener('click', function (e) {
+        if (sbtn.contains(e.target)) return;
+        var t = e.target.closest ? e.target : e.target.parentElement, el;
+        if ((el = t.closest('.rt-tab'))) sfx[tabSfx[tabs.indexOf(el)] || 'coin']();
+        else if (t.closest('#rt-portrait')) { /* has its own sound */ }
+        else if (t.closest('#rt-more')) (document.getElementById('rt-bio-body').classList.contains('open') ? sfx.jump : sfx.squish)();
+        else if ((el = t.closest('.rt-link'))) sfx[linkSfx[el.textContent.trim().toLowerCase()] || 'coin']();
+        else if (t.closest('a')) sfx.pipe();
+        else sfx[pick(clickSfx)]();
+      });
+      // Hover ticks, delegated so they cover every link and button
+      document.addEventListener('mouseover', function (e) {
+        var a = e.target.closest && e.target.closest('a, button');
+        if (a && !(e.relatedTarget && a.contains(e.relatedTarget))) (a.matches('button, .rt-link') ? sfx.hoverBtn : sfx.tick)();
+      });
+
+      /* ---------- retro console UI ---------- */
+      var tabs = [].slice.call(document.querySelectorAll('.rt-tab'));
+      var panels = [].slice.call(document.querySelectorAll('.rt-panel section'));
+      var sayEl = document.getElementById('rt-say'), sayTimer, cur = 0;
+      var says = ["Hi, I'm Prajyot!", 'My research work.', 'Some of my projects.', "Let's get in touch!"];
+      function say(t) {
+        clearInterval(sayTimer);
+        if (reduce) { sayEl.textContent = t; return; }
+        sayEl.textContent = '';
+        var i = 0;
+        sayTimer = setInterval(function () {
+          sayEl.textContent = t.slice(0, ++i);
+          if (i % 2 && t.charAt(i - 1) !== ' ') sfx.talk();
+          if (i >= t.length) clearInterval(sayTimer);
+        }, 30);
+      }
+      function show(i, quiet) {
+        cur = (i + tabs.length) % tabs.length;
+        tabs.forEach(function (t, k) { t.classList.toggle('active', k === cur); t.setAttribute('aria-selected', k === cur); });
+        panels.forEach(function (p, k) { p.classList.toggle('active', k === cur); if (k === cur) { var b = p.querySelector('.rt-body'); if (b) b.scrollTop = 0; } });
+        say(says[cur]);
+      }
+      // Click the portrait: it glitches and flashes the real photo
+      var portrait = document.getElementById('rt-portrait'), glitching = false;
+      var pixelSrc = portrait.getAttribute('src'), realSrc = 'tn/images/pfp_flash.jpeg';
+      document.addEventListener('DOMContentLoaded', function () { new Image().src = realSrc; });   // preload
+      function glitch() {
+        if (glitching) return;
+        glitching = true;
+        var steps = [[0, 'pixel'], [140, 'real'], [260, 'pixel'], [340, 'real'], [1100, 'pixel']];
+        sfx.glitch();
+        if (!reduce) portrait.classList.add('glitch');
+        steps.forEach(function (st) {
+          setTimeout(function () {
+            portrait.src = st[1] === 'real' ? realSrc : pixelSrc;
+            portrait.classList.toggle('real', st[1] === 'real');
+          }, st[0]);
+        });
+        setTimeout(function () { portrait.classList.remove('glitch'); glitching = false; }, 1250);
+      }
+      portrait.addEventListener('click', glitch);
+      portrait.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); glitch(); } });
+
+      tabs.forEach(function (t, k) { t.addEventListener('click', function () { show(k); }); });
+
+      // Bio text is cloned from the classic page so it only lives in one place
+      document.addEventListener('DOMContentLoaded', function () {
+        var ps = [].filter.call(document.querySelectorAll('h1 ~ p'), function (p) { return !p.classList.contains('social-icons'); });
+        var body = document.getElementById('rt-bio-body'), more = document.getElementById('rt-more');
+        ps.forEach(function (p, k) { var c = p.cloneNode(true); if (k) c.classList.add('rt-extra'); body.appendChild(c); });
+        more.addEventListener('click', function () {
+          var open = body.classList.toggle('open');
+          more.textContent = open ? 'Less info' : 'More info';
+          body.scrollTop = 0;
+        });
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (!isRetro()) return;
+        if (/input|textarea|select/i.test(e.target.tagName)) return;
+        if (e.key === 'ArrowDown') { show(cur + 1); e.preventDefault(); }
+        else if (e.key === 'ArrowUp') { show(cur - 1); e.preventDefault(); }
+      });
+
+      /* ---------- click sparkles ---------- */
+      var colors = ['#081820', '#346856', '#88c070', '#e0f8d0'];
+      function burst(x, y, n, spread, fall) {
+        for (var k = 0; k < n; k++) {
+          var d = document.createElement('div'), a = Math.random() * 6.283, r = spread * (0.4 + Math.random() * 0.6);
+          d.className = 'rt-spark';
+          d.style.left = x + 'px'; d.style.top = y + 'px';
+          d.style.background = colors[k % colors.length];
+          d.style.setProperty('--dx', Math.cos(a) * r + 'px');
+          d.style.setProperty('--dy', Math.sin(a) * r + (fall || 0) + 'px');
+          document.body.appendChild(d);
+          setTimeout(function (el) { el.remove(); }, 800, d);
+        }
+      }
+      document.addEventListener('click', function (e) {
+        if (reduce || !isRetro()) return;
+        burst(e.clientX, e.clientY, 8, 36, 0);
+      });
+
+      /* ---------- loading screen ---------- */
+      var start = document.getElementById('start-screen'), pct = document.getElementById('load-pct');
+      var fill = document.getElementById('load-fill'), tipEl = document.getElementById('load-tip');
+      var tips = ['Blowing dust off the cartridge...', 'Inserting coin...', 'Warming up the pixels...', 'Collecting 100 coins...', 'Looking for the warp pipe...', 'Saving the princess...', 'Counting extra lives...'];
+      function showStart(after) {
+        if (reduce) { after(); return; }
+        start.classList.add('show');
+        var finished = false, v = 0, timer;
+        pct.textContent = '0%'; fill.style.width = '0'; tipEl.textContent = tips[0];
+        function finish() {
+          if (finished) return; finished = true;
+          clearInterval(timer);
+          document.removeEventListener('keydown', finish); start.removeEventListener('click', finish);
+          start.classList.remove('show');
+          sfx.powerup(); after();
+        }
+        // fake asset loading: random-sized jumps up to 100%, with a new retro quip along the way
+        timer = setInterval(function () {
+          v = Math.min(100, v + 3 + Math.floor(Math.random() * 9));
+          pct.textContent = v + '%'; fill.style.width = v + '%';
+          tipEl.textContent = v >= 100 ? 'Ready, Player One!' : tips[Math.floor(v / 100 * tips.length)];
+          if (v >= 100) { clearInterval(timer); setTimeout(finish, 700); }
+        }, 170);
+        document.addEventListener('keydown', finish); start.addEventListener('click', finish);
+      }
+
+      /* ---------- theme switching ---------- */
+      function apply(retro, animate) {
+        if (retro) root.setAttribute('data-theme', 'retro'); else root.removeAttribute('data-theme');
+        soundOn = false; paintSound(); sbtn.classList.remove('locked');
+        if (retro) { if (animate !== false) showStart(function () { show(0); }); else show(0); }
+      }
+      if (box.checked) show(0);
+      box.addEventListener('change', function () {
+        apply(box.checked);
+        try { localStorage.setItem('theme', box.checked ? 'retro' : 'classic'); } catch (e) {}
+      });
+    })();
+  </script>
   <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
     <tr style="padding:0px">
       <td style="padding:0px">
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
           <tr style="padding:0px">
             <td style="padding:2.5%;width:60%;vertical-align:middle">
-              <h1>
+              <h1 id="about">
                 Prajyot Jadhav
               </h1>
-              <p>I’m a Research Engineer in Robotics at the <a href="https://sites.google.com/view/akslab/home">Autonomous and Kooperative Systems Lab</a> at the University of Tartu, Estonia, advised by <a href="https://tuit.ut.ee/en/content/arun-kumar-singh">Prof. Arun Kumar Singh</a>.
+              <p>I’m currently pursuing my Master’s in Robotics (MSR) at Carnegie Mellon University, advised by <a href="https://duembgen.github.io/">Prof. Frederike Dümbgen</a> in the <a href="https://trio-cmu.github.io/trio-website/">TRIO lab</a>. I’m working on sample-efficient policy learning by using foundation models to guide search in low-dimensional subspaces of deep RL policies.
+              </p>
+              <p>Before CMU, I was a Research Engineer in Robotics at the <a href="https://sites.google.com/view/akslab/home">AKS Lab</a> of the University of Tartu, Estonia, advised by <a href="https://tuit.ut.ee/en/content/arun-kumar-singh">Prof. Arun Kumar Singh</a>.
+              <!-- </p>
+              <p> -->
+                Previously, I also worked with <a href="https://jderobot.github.io/">JdeRobot</a> through Google Summer of Code, collaborating with <a href="https://gsyc.urjc.es/jmplaza/">Prof. José María Cañas Plaza</a> and <a href="https://www.linkedin.com/in/pedroariasperez/?locale=en_US">Prof. Pedro Arias Pérez</a> on the open-source software <a href="https://jderobot.github.io/RoboticsAcademy/">Robotics Academy</a>.
               </p>
               <p>
-                I’ve previously worked with <a href="https://jderobot.github.io/">JdeRobot</a> through Google Summer of Code, collaborating with <a href="https://gsyc.urjc.es/jmplaza/">Prof. José María Cañas Plaza</a> and <a href="https://www.linkedin.com/in/pedroariasperez/?locale=en_US">Prof. Pedro Arias Pérez</a> on the open-source software <a href="https://jderobot.github.io/RoboticsAcademy/">Robotics Academy</a>.
-                During my pre-final year summer, I worked on adaptive control strategies for quadrotors under the supervision of <a href="https://manoonpong.com/">Prof. Poramate Manoonpong</a>. 
+                I hold a Bachelor’s in Electronics and Communication Engineering from Visvesvaraya National Institute of Technology (VNIT), India. During my time there, I was part of <a href="https://ivlabs.in/">IvLabs</a>, the AI and Robotics lab of VNIT, where I developed many of my research interests under the guidance of <a href="https://vnit.ac.in/engineering/mech/dr-s-s-chiddarwar/">Prof. Shital Chiddarwar</a>. During the summer after my junior year, I worked on adaptive control strategies for quadrotors under the supervision of <a href="https://manoonpong.com/">Prof. Poramate Manoonpong</a>.
               </p>
-              <p>
-                I hold a Bachelor’s in Electronics and Communication Engineering from Visvesvaraya National Institute of Technology (VNIT), India. During my time there, I was part of <a href="https://ivlabs.in/">IvLabs</a>, the AI and Robotics lab of VNIT, where I developed many of my research interests under the guidance of <a href="https://vnit.ac.in/engineering/mech/dr-s-s-chiddarwar/">Prof. Shital Chiddarwar</a>.
-              </p>
-              <p class="social-icons" style="text-align:center;">
+              <p id="contact" class="social-icons" style="text-align:center;">
                 <a href="mailto:prajyotj04@gmail.com" target="_blank">
                   <i class="fas fa-envelope fa-lg"></i>
                 </a>
@@ -78,7 +394,7 @@
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
           <tr>
             <td style="padding:2.5%;width:100%;vertical-align:middle">
-              <h2>Research</h2>
+              <h2 id="research">Research</h2>
             </td>
           </tr>
         </table>
@@ -140,7 +456,7 @@
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
           <tr>
             <td style="padding:2.5%;width:100%;vertical-align:middle">
-              <h2>Selected Projects</h2>
+              <h2 id="projects">Selected Projects</h2>
             </td>
           </tr>
         </table>
