@@ -23,10 +23,6 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@700&family=VT323&display=swap" rel="stylesheet">
-  <script>
-    // Apply saved theme before first paint (default = classic)
-    try { if (localStorage.getItem('theme') === 'retro') document.documentElement.setAttribute('data-theme', 'retro'); } catch (e) {}
-  </script>
 
 </head>
 
@@ -334,10 +330,8 @@
         soundOn = false; paintSound(); sbtn.classList.remove('locked');
         if (retro) { if (animate !== false) showStart(function () { show(0); }); else show(0); }
       }
-      if (box.checked) show(0);
       box.addEventListener('change', function () {
         apply(box.checked);
-        try { localStorage.setItem('theme', box.checked ? 'retro' : 'classic'); } catch (e) {}
       });
     })();
   </script>
@@ -350,7 +344,7 @@
               <h1 id="about">
                 Prajyot Jadhav
               </h1>
-              <p>I’m currently pursuing my Master’s in Robotics (MSR) at Carnegie Mellon University, advised by <a href="https://duembgen.github.io/">Prof. Frederike Dümbgen</a> in the <a href="https://trio-cmu.github.io/trio-website/">TRIO lab</a>. I’m working on sample-efficient policy learning by using foundation models to guide search in low-dimensional subspaces of deep RL policies.
+              <p>I’m currently pursuing my Master’s in Robotics (MSR) at Carnegie Mellon University, advised by <a href="https://duembgen.github.io/">Prof. Frederike Dümbgen</a> in the <a href="https://trio-cmu.github.io/trio-website/">TRIO Lab</a>. I’m working on sample-efficient policy learning by using foundation models to guide search in low-dimensional subspaces of deep RL policies.
               </p>
               <p>Before CMU, I was a Research Engineer in Robotics at the <a href="https://sites.google.com/view/akslab/home">AKS Lab</a> of the University of Tartu, Estonia, advised by <a href="https://tuit.ut.ee/en/content/arun-kumar-singh">Prof. Arun Kumar Singh</a>.
               <!-- </p>
