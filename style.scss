@@ -183,8 +183,10 @@ $rt-light: #88c070;
 $rt-lightest: #e0f8d0;
 $rt-brick: #cdeabb;
 
+$coin-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 10' shape-rendering='crispEdges'%3E%3Crect x='2' y='0' width='4' height='1' fill='%23081820'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23081820'/%3E%3Crect x='2' y='1' width='4' height='1' fill='%2388c070'/%3E%3Crect x='6' y='1' width='1' height='1' fill='%23081820'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%23081820'/%3E%3Crect x='1' y='2' width='2' height='1' fill='%2388c070'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%23e0f8d0'/%3E%3Crect x='4' y='2' width='3' height='1' fill='%2388c070'/%3E%3Crect x='7' y='2' width='1' height='1' fill='%23081820'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%23081820'/%3E%3Crect x='1' y='3' width='2' height='1' fill='%2388c070'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%23e0f8d0'/%3E%3Crect x='4' y='3' width='3' height='1' fill='%2388c070'/%3E%3Crect x='7' y='3' width='1' height='1' fill='%23081820'/%3E%3Crect x='0' y='4' width='1' height='1' fill='%23081820'/%3E%3Crect x='1' y='4' width='6' height='1' fill='%2388c070'/%3E%3Crect x='7' y='4' width='1' height='1' fill='%23081820'/%3E%3Crect x='0' y='5' width='1' height='1' fill='%23081820'/%3E%3Crect x='1' y='5' width='6' height='1' fill='%2388c070'/%3E%3Crect x='7' y='5' width='1' height='1' fill='%23081820'/%3E%3Crect x='0' y='6' width='1' height='1' fill='%23081820'/%3E%3Crect x='1' y='6' width='6' height='1' fill='%2388c070'/%3E%3Crect x='7' y='6' width='1' height='1' fill='%23081820'/%3E%3Crect x='0' y='7' width='1' height='1' fill='%23081820'/%3E%3Crect x='1' y='7' width='6' height='1' fill='%2388c070'/%3E%3Crect x='7' y='7' width='1' height='1' fill='%23081820'/%3E%3Crect x='1' y='8' width='1' height='1' fill='%23081820'/%3E%3Crect x='2' y='8' width='4' height='1' fill='%2388c070'/%3E%3Crect x='6' y='8' width='1' height='1' fill='%23081820'/%3E%3Crect x='2' y='9' width='4' height='1' fill='%23081820'/%3E%3C/svg%3E");
+
 // Hidden unless retro is on
-#retro-app, .rt-spark, .sound-toggle, .start-screen { display: none; }
+#retro-app, .rt-spark, .sound-toggle, .start-screen, .crt-on { display: none; }
 
 html[data-theme="retro"] {
   body {
@@ -197,7 +199,7 @@ html[data-theme="retro"] {
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' shape-rendering='crispEdges'%3E%3Cpath fill='%23081820' d='M0 0h2v12H0zM2 2h2v2H2zM4 4h2v2H4zM6 6h2v2H6zM2 10h2v2H2zM4 8h2v2H4zM8 8h4v2H8z'/%3E%3Cpath fill='%23e0f8d0' d='M2 4h2v6H2zM4 6h2v2H4z'/%3E%3C/svg%3E") 0 0, auto;
   }
   // pixel pointing-hand for anything clickable
-  a, button, label, .rt-tab, #rt-portrait { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' shape-rendering='crispEdges'%3E%3Crect x='4' y='0' width='2' height='1' fill='%23081820'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='1' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='1' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='2' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='2' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='3' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='3' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='4' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='4' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='4' width='3' height='1' fill='%23081820'/%3E%3Crect x='3' y='5' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='5' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='5' width='1' height='1' fill='%23081820'/%3E%3Crect x='7' y='5' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='9' y='5' width='3' height='1' fill='%23081820'/%3E%3Crect x='1' y='6' width='3' height='1' fill='%23081820'/%3E%3Crect x='4' y='6' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='6' width='1' height='1' fill='%23081820'/%3E%3Crect x='7' y='6' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='9' y='6' width='1' height='1' fill='%23081820'/%3E%3Crect x='10' y='6' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='12' y='6' width='1' height='1' fill='%23081820'/%3E%3Crect x='0' y='7' width='1' height='1' fill='%23081820'/%3E%3Crect x='1' y='7' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='3' y='7' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='7' width='9' height='1' fill='%23e0f8d0'/%3E%3Crect x='13' y='7' width='1' height='1' fill='%23081820'/%3E%3Crect x='0' y='8' width='1' height='1' fill='%23081820'/%3E%3Crect x='1' y='8' width='12' height='1' fill='%23e0f8d0'/%3E%3Crect x='13' y='8' width='1' height='1' fill='%23081820'/%3E%3Crect x='1' y='9' width='1' height='1' fill='%23081820'/%3E%3Crect x='2' y='9' width='11' height='1' fill='%23e0f8d0'/%3E%3Crect x='13' y='9' width='1' height='1' fill='%23081820'/%3E%3Crect x='2' y='10' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='10' width='10' height='1' fill='%23e0f8d0'/%3E%3Crect x='13' y='10' width='1' height='1' fill='%23081820'/%3E%3Crect x='2' y='11' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='11' width='9' height='1' fill='%23e0f8d0'/%3E%3Crect x='12' y='11' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='12' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='12' width='8' height='1' fill='%23e0f8d0'/%3E%3Crect x='12' y='12' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='13' width='1' height='1' fill='%23081820'/%3E%3Crect x='5' y='13' width='6' height='1' fill='%23e0f8d0'/%3E%3Crect x='11' y='13' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='14' width='1' height='1' fill='%23081820'/%3E%3Crect x='5' y='14' width='6' height='1' fill='%23e0f8d0'/%3E%3Crect x='11' y='14' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='15' width='8' height='1' fill='%23081820'/%3E%3C/svg%3E") 5 0, pointer; }
+  a, button, label, .rt-tab, #rt-portrait, #rt-sprite { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' shape-rendering='crispEdges'%3E%3Crect x='4' y='0' width='2' height='1' fill='%23081820'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='1' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='1' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='2' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='2' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='3' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='3' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='4' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='4' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='4' width='3' height='1' fill='%23081820'/%3E%3Crect x='3' y='5' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='5' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='5' width='1' height='1' fill='%23081820'/%3E%3Crect x='7' y='5' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='9' y='5' width='3' height='1' fill='%23081820'/%3E%3Crect x='1' y='6' width='3' height='1' fill='%23081820'/%3E%3Crect x='4' y='6' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='6' y='6' width='1' height='1' fill='%23081820'/%3E%3Crect x='7' y='6' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='9' y='6' width='1' height='1' fill='%23081820'/%3E%3Crect x='10' y='6' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='12' y='6' width='1' height='1' fill='%23081820'/%3E%3Crect x='0' y='7' width='1' height='1' fill='%23081820'/%3E%3Crect x='1' y='7' width='2' height='1' fill='%23e0f8d0'/%3E%3Crect x='3' y='7' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='7' width='9' height='1' fill='%23e0f8d0'/%3E%3Crect x='13' y='7' width='1' height='1' fill='%23081820'/%3E%3Crect x='0' y='8' width='1' height='1' fill='%23081820'/%3E%3Crect x='1' y='8' width='12' height='1' fill='%23e0f8d0'/%3E%3Crect x='13' y='8' width='1' height='1' fill='%23081820'/%3E%3Crect x='1' y='9' width='1' height='1' fill='%23081820'/%3E%3Crect x='2' y='9' width='11' height='1' fill='%23e0f8d0'/%3E%3Crect x='13' y='9' width='1' height='1' fill='%23081820'/%3E%3Crect x='2' y='10' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='10' width='10' height='1' fill='%23e0f8d0'/%3E%3Crect x='13' y='10' width='1' height='1' fill='%23081820'/%3E%3Crect x='2' y='11' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='11' width='9' height='1' fill='%23e0f8d0'/%3E%3Crect x='12' y='11' width='1' height='1' fill='%23081820'/%3E%3Crect x='3' y='12' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='12' width='8' height='1' fill='%23e0f8d0'/%3E%3Crect x='12' y='12' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='13' width='1' height='1' fill='%23081820'/%3E%3Crect x='5' y='13' width='6' height='1' fill='%23e0f8d0'/%3E%3Crect x='11' y='13' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='14' width='1' height='1' fill='%23081820'/%3E%3Crect x='5' y='14' width='6' height='1' fill='%23e0f8d0'/%3E%3Crect x='11' y='14' width='1' height='1' fill='%23081820'/%3E%3Crect x='4' y='15' width='8' height='1' fill='%23081820'/%3E%3C/svg%3E") 5 0, pointer; }
   img { image-rendering: pixelated; }
 
   // The classic page is replaced by the console UI
@@ -225,12 +227,23 @@ html[data-theme="retro"] {
   .sound-toggle[aria-pressed="true"] .theme-switch-knob { transform: translateX(24px); }
   .sound-toggle:focus-visible .theme-switch-track { outline: 2px solid $rt-darkest; outline-offset: 2px; }
 
+  // CRT "power on": a bright dot stretches into a line, then the line opens up into the full screen
+  .crt-on.show {
+    display: block; position: fixed; inset: 0; z-index: 900; background: $rt-darkest; pointer-events: none;
+    animation: crt-fade .95s linear 1 forwards;
+    > div {
+      position: absolute; inset: 0; background: $rt-lightest;
+      box-shadow: 0 0 28px 8px $rt-lightest;
+      animation: crt-on .95s ease-in-out 1 forwards;
+    }
+  }
+
   /* ---------- console layout ---------- */
   #retro-app {
     min-height: 100vh;
     box-sizing: border-box;
     display: flex; flex-direction: column;
-    padding: 64px 24px 12px;
+    padding: 100px 24px 12px;
     font-family: 'VT323', monospace;
     color: $rt-darkest;
   }
@@ -253,7 +266,7 @@ html[data-theme="retro"] {
     margin: 0 auto;
     width: 100%;
     min-height: 600px;
-    height: calc(100vh - 110px);
+    height: calc(100vh - 146px);
     max-height: 680px;
   }
 
@@ -295,8 +308,41 @@ html[data-theme="retro"] {
     .rt-sprite {
       position: absolute; bottom: calc(100% + 2px); left: 44px;
       animation: rt-bob 1s steps(1) infinite;
+      &.jump { animation: rt-jump .55s linear 1; }
+      &.shiny [fill="#88c070"] { fill: #e0f8d0; }
+      &.flash { animation: rt-flash .65s steps(1) 1; }
+      .shut { display: none; }
+      &.sleep { animation: none; .eye, .ant { display: none; } .shut { display: inline; } }
+      &.wake { animation: rt-wake .35s linear 1; }
       .ant { animation: rt-blink .6s steps(1) infinite; }
       .eye { animation: rt-eye 3.2s steps(1) infinite; }
+    }
+
+    // coin counter + coin flip + 1UP, all above the chat box next to the robot
+    .rt-coins {
+      display: none; position: absolute; bottom: calc(100% + 8px); left: 104px;
+      align-items: center; gap: 6px;
+      font-family: 'Press Start 2P', monospace; font-size: 10px; color: $rt-darkest;
+      &.on { display: flex; }
+      &::before { content: ""; width: 12px; height: 15px; background: $coin-img no-repeat center / contain; }
+    }
+    .rt-coin {
+      position: absolute; bottom: calc(100% + 22px); left: 58px; width: 16px; height: 20px;
+      background: $coin-img no-repeat center / contain; pointer-events: none; z-index: 3;
+      animation: rt-coin .65s linear 1 forwards;
+    }
+    .rt-1up {
+      position: absolute; bottom: calc(100% + 30px); left: 104px; pointer-events: none; z-index: 3;
+      font-family: 'Press Start 2P', monospace; font-size: 10px; color: $rt-darkest;
+      animation: rt-1up 1s steps(8) 1 forwards;
+    }
+    .rt-zzz {
+      position: absolute; bottom: calc(100% + 28px); left: 98px; width: 56px; height: 48px; pointer-events: none; z-index: 3;
+      font-family: 'Press Start 2P', monospace; color: $rt-darkest;
+      span { position: absolute; opacity: 0; animation: rt-zzz 2.4s linear infinite; }
+      span:nth-child(1) { left: 0;    top: 30px; font-size: 11px; animation-delay: 0s; }
+      span:nth-child(2) { left: 14px; top: 15px; font-size: 14px; animation-delay: .8s; }
+      span:nth-child(3) { left: 30px; top: 0;    font-size: 17px; animation-delay: 1.6s; }
     }
     p { margin: 0; font-family: 'VT323', monospace; font-size: 26px; line-height: 1.1; text-align: center; color: $rt-lightest; }
   }
@@ -416,6 +462,29 @@ html[data-theme="retro"] {
   85%  { transform: translate(-3px, 1px); clip-path: inset(40% 0 30% 0); filter: invert(1); }
   100% { transform: translate(0); clip-path: inset(0); filter: none; }
 }
+@keyframes rt-jump {
+  0%   { transform: translateY(0);     animation-timing-function: cubic-bezier(.2, .8, .4, 1); }
+  45%  { transform: translateY(-44px); animation-timing-function: cubic-bezier(.6, 0, .9, .4); }
+  100% { transform: translateY(0); }
+}
+@keyframes rt-coin {
+  0%   { transform: translate(0, 0) scaleX(1); opacity: 1; }
+  25%  { transform: translate(14px, -30px) scaleX(.2); }
+  50%  { transform: translate(28px, -44px) scaleX(1); }
+  75%  { transform: translate(42px, -34px) scaleX(.2); opacity: 1; }
+  100% { transform: translate(56px, -8px) scaleX(1); opacity: 0; }
+}
+@keyframes rt-1up { from { transform: translateY(8px); opacity: 1; } to { transform: translateY(-14px); opacity: 0; } }
+@keyframes rt-zzz { 0% { transform: translate(0, 8px); opacity: 0; } 20% { opacity: 1; } 100% { transform: translate(10px, -18px); opacity: 0; } }
+@keyframes rt-wake { 40% { transform: translateY(-14px); } }
+@keyframes crt-on {
+  0%   { transform: scale(0, .006); }
+  30%  { transform: scale(1, .006); }
+  75%  { transform: scale(1, 1); }
+  100% { transform: scale(1, 1); }
+}
+@keyframes crt-fade { 0%, 78% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes rt-flash { 0%, 40%, 80% { filter: invert(1); } 20%, 60%, 100% { filter: none; } }
 @keyframes rt-bob { 50% { transform: translateY(-3px); } }
 @keyframes rt-spark { to { transform: translate(var(--dx), var(--dy)); opacity: 0; } }
 
@@ -437,5 +506,6 @@ html[data-theme="retro"] {
 
 @media (prefers-reduced-motion: reduce) {
   .theme-switch-track, .theme-switch-knob { transition: none; }
-  html[data-theme="retro"] .rt-sprite, html[data-theme="retro"] .rt-sprite .ant, html[data-theme="retro"] .rt-sprite .eye { animation: none; }
+  html[data-theme="retro"] .rt-sprite, html[data-theme="retro"] .rt-sprite.jump, html[data-theme="retro"] .rt-sprite.wake, html[data-theme="retro"] .rt-sprite.flash, html[data-theme="retro"] .rt-sprite .ant, html[data-theme="retro"] .rt-sprite .eye { animation: none; }
+  html[data-theme="retro"] .rt-zzz span { animation: none; opacity: 1; }
 }
